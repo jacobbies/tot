@@ -1,4 +1,5 @@
 from apify_client import ApifyClient
+import streamlit as st
 
 # Initialize the ApifyClient with your API token
 client = ApifyClient("apify_api_iLpXGuEKJ13mtrOgp3zuVGYkf8yFkZ4nGBPt")
@@ -7,7 +8,7 @@ client = ApifyClient("apify_api_iLpXGuEKJ13mtrOgp3zuVGYkf8yFkZ4nGBPt")
 run_input = {
     "queries": "Food in NYC",
     "maxPagesPerQuery": 1,
-    "resultsPerPage": 100,
+    "resultsPerPage": 50,
     "mobileResults": False,
     "languageCode": "",
     "maxConcurrency": 10,
@@ -22,8 +23,11 @@ run_input = {
 }
 
 # Run the Actor and wait for it to finish
-run = client.actor("nFJndFXA5zjCTuudP").call(run_input=run_input)
+#run = client.actor("nFJndFXA5zjCTuudP").call(run_input=run_input)
 
 # Fetch and print Actor results from the run's dataset (if there are any)
-for item in client.dataset(run["defaultDatasetId"]).iterate_items():
-    print(item)
+#for item in client.dataset(run["defaultDatasetId"]).iterate_items():
+    #print(item)
+
+#streamlit implementation
+st.write("Hello World")
