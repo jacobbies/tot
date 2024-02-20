@@ -1,8 +1,9 @@
 from apify_client import ApifyClient
 import streamlit as st
-
+import os
 # Initialize the ApifyClient with your API token
-client = ApifyClient("apify_api_iLpXGuEKJ13mtrOgp3zuVGYkf8yFkZ4nGBPt")
+APIFY_API_KEY = os.environ['APIFY_API_KEY']
+client = ApifyClient(APIFY_API_KEY)
 
 # Prepare the Actor input
 run_input = {
