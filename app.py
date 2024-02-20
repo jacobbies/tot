@@ -1,34 +1,32 @@
+from dotenv import load_dotenv
 from apify_client import ApifyClient
-import streamlit as st
 import os
-# Initialize the ApifyClient with your API token
-APIFY_API_KEY = os.environ['APIFY_API_KEY']
+import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
+import streamlit as st
+
+# Load .env variables and initialize apifyclient with API token
+load_dotenv()
+APIFY_API_KEY = os.getenv('APIFY_API_KEY')
 client = ApifyClient(APIFY_API_KEY)
 
-# Prepare the Actor input
-run_input = {
-    "queries": "Food in NYC",
-    "maxPagesPerQuery": 1,
-    "resultsPerPage": 50,
-    "mobileResults": False,
-    "languageCode": "",
-    "maxConcurrency": 10,
-    "saveHtml": False,
-    "saveHtmlToKeyValueStore": False,
-    "includeUnfilteredResults": False,
-    "customDataFunction": """async ({ input, $, request, response, html }) => {
-  return {
-    pageTitle: $('title').text(),
-  };
-};""",
-}
+# Draw a title and some text to the app:
+'''
+# Datascout
 
-# Run the Actor and wait for it to finish
-#run = client.actor("nFJndFXA5zjCTuudP").call(run_input=run_input)
+This is some _markdown_.
+'''
 
-# Fetch and print Actor results from the run's dataset (if there are any)
-#for item in client.dataset(run["defaultDatasetId"]).iterate_items():
-    #print(item)
+df = pd.DataFrame({'col1': [1,2,3]})
+df # Draw the dataframe
 
-#streamlit implementation
-st.write("Hello World")
+x = 10
+'x', x  # Draw the string 'x' and then the value of x
+
+# Also works with most supported chart types
+arr = np.random.normal(1, 1, size=100)
+fig, ax = plt.subplots()
+ax.hist(arr, bins=20)
+
+fig  # Draw a Matplotlib chart
