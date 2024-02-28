@@ -1,4 +1,5 @@
 idea.md
+output_serp.csv
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
